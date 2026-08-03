@@ -1,6 +1,6 @@
 {% extends "base.html" %}
  
-{% block title %} Lista de livros {% endblock%}
+{% block title %} Lista de Livros {% endblock %}
  
 {% block conteudo %}
 <div class="card">
@@ -13,8 +13,9 @@
             role="button"
             >Adicionar novo livro</a
         >
-        
+       
     </div>
+   
     <div class="card-body">
         <h4 class="card-title">Livros</h4>
         <div
@@ -33,11 +34,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for livro in livros %}
                     <tr>
-                        <td>1</td>
-                        <td>Framework Django para Iniciantes</td>
-                        <td>Imagem.jpg</td>
-                        <td>o Framework Django para iniciantes tem com objetivo ensinar...</td>
+                        <td>{{ livro.id }}</td>
+                        <td>{{ livro.titulo }}</td>
+                        <td>
+                            <img src="{{ livro.imagem.url }}" height="100" />
+                        </td>
+                        <td>{{ livro.descricao }}</td>
                         <td>
                             <a
                                 name=""
@@ -47,26 +51,27 @@
                                 role="button"
                                 >Alterar</a
                             >
-                        
-                            |  
-                            
+                           
+                           
+                            |
+                           
                             <a
                                 name=""
                                 id=""
                                 class="btn btn-danger"
-                                href="% url 'excluir' %"
+                                href="#"
                                 role="button"
                                 >Excluir</a
                             >
-
-
-                            </td>
+                           
+                       
+                        </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
        
- 
        
     </div>
     <div class="card-footer text-body-secondary"></div>
@@ -74,4 +79,5 @@
  
  
 {% endblock %}
+ 
  

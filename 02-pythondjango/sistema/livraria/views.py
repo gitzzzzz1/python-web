@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
  
 # Create your views here.
- 
-def  inicio(request):
+from .models import Livro 
+from .forms import LivroForm
+
+def inicio(request):
     #return HttpResponse("<h1>Boas vindas a Livraria Ana Cunha</h1>")
     return render(request, 'pages/inicio.html')
 
@@ -12,10 +14,14 @@ def sobre(request):
     return render(request, 'pages/sobre.html')
 
 def livros(request):
-    return render(request, 'livros/index.html')
+    livros = Livro.objects.all()
+    return render(request, 'livros/index.html', {'livros': livros})
 
 def criar(request):
-    return render(request, 'livros/criar.html')
+    formulario = LivroForm(request.POST or None)
+    return render(request, 'livros/criar.html', {'formulario': formulario})
 
 def alterar(request):
     return render(request, 'livros/alterar.html')
+
+
